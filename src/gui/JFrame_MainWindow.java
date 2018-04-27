@@ -16,6 +16,9 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javadiptraceasciilib.diptrace.DiptraceProject;
+import javadiptraceasciilib.diptrace.tokenizer.DiptraceTokenizer;
+import javadiptraceasciilib.diptrace.tree.DiptraceItem;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -27,7 +30,7 @@ import javax.swing.tree.TreePath;
  */
 public class JFrame_MainWindow extends javax.swing.JFrame {
 	
-//	DiptraceProject diptraceProject = new DiptraceProject();
+	DiptraceProject diptraceProject = new DiptraceProject();
 	DefaultMutableTreeNode treeRootNode = new DefaultMutableTreeNode();
 	DefaultTreeModel diptraceItemsTreeModel = new DefaultTreeModel(treeRootNode);
 	
@@ -38,7 +41,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 	public JFrame_MainWindow() {
 		initComponents();
 	}
-/*	
+	
 	public JFrame_MainWindow init() {
 		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.1.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone test.asc");
@@ -85,14 +88,14 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 				System.out.format("%d: %s\n", ++lineNo, line);
 				jTextArea_Output.append(line);
 			}
-*./			
+*/			
 		} catch (FileNotFoundException ex) {
 			Logger.getLogger(JFrame_MainWindow.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
 			Logger.getLogger(JFrame_MainWindow.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-*/
+
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always
