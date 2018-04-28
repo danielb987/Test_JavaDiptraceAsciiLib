@@ -58,8 +58,8 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 	}
 	
 	private void fillTree(DefaultMutableTreeNode treeNode, DiptraceItem item) {
-		for (DiptraceItem subItem : item.subItems) {
-//			DefaultMutableTreeNode node = new DefaultMutableTreeNode(subItem.identifier);
+		for (DiptraceItem subItem : item.getSubItems()) {
+//			DefaultMutableTreeNode node = new DefaultMutableTreeNode(subItem.fIdentifier);
 			DefaultMutableTreeNode node = new DefaultMutableTreeNode(subItem.toString());
 			treeNode.add(node);
 			fillTree(node, subItem);
