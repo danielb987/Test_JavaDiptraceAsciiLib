@@ -47,7 +47,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 //		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone test.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc");
 		
-		fillTree(treeRootNode, diptraceProject.getRoot());
+		fillTree(treeRootNode, diptraceProject.getSchematicsRoot());
 //		jTree_DiptraceItems.collapsePath(path);
 		jTree_DiptraceItems.expandRow(0);
 		jTree_DiptraceItems.setRootVisible(false);
@@ -72,7 +72,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 			
 			DiptraceTokenizer tokenizer = new DiptraceTokenizer(br);
 			
-			diptraceProject.parse(tokenizer);
+			diptraceProject.parseSchematics(tokenizer);
 /*			
 			DiptraceToken token;
 			while ((token = tokenizer.nextToken()) != null) {
