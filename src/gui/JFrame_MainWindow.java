@@ -47,7 +47,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 //		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone test.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc");
 		
-		fillTree(treeRootNode, diptraceProject.root);
+		fillTree(treeRootNode, diptraceProject.getRoot());
 //		jTree_DiptraceItems.collapsePath(path);
 		jTree_DiptraceItems.expandRow(0);
 		jTree_DiptraceItems.setRootVisible(false);
