@@ -49,7 +49,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 	
 	public JFrame_MainWindow init() {
 		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.schematics.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.asc");
-//		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone test.asc");
+//		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone test.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\cap.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 		
