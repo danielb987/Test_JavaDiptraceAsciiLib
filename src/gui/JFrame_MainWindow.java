@@ -50,12 +50,15 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 	}
 	
 	public JFrame_MainWindow init() {
-		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.schematics.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.asc");
+//		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.schematics.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone test.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\cap.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 		
-		
+		readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
+			"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb_new.asc");
+//		readFile("F:\\Projekt\\americaN\\Corleone\\Three LED.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.asc");
+/*		
 		DiptraceOperations diptraceOperations = new DiptraceOperations(diptraceProject);
 		
 		try {
@@ -69,7 +72,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 		
 		
 		writeFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.schematics.new.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.new.asc");
-		
+*/		
 		fillTree(schematicsTreeRootNode, diptraceProject.getSchematicsRoot());
 		fillTree(pcbTreeRootNode, diptraceProject.getPCBRoot());
 //		jTree_DiptraceItems.collapsePath(path);

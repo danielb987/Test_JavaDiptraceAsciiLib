@@ -25,7 +25,7 @@ public class Main {
             "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb.asc",
             "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb_new.asc");
 		
-		System.exit(0);
+//		System.exit(0);
 /*		
 		try {
 			new JFrame_MainWindow().init();
