@@ -11,9 +11,12 @@ import diptrace.tokenizer.DiptraceTokenizer;
 import diptrace.tree.DiptraceItem;
 */
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javadiptraceasciilib.diptrace.DiptraceProject;
@@ -47,7 +50,10 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 	public JFrame_MainWindow init() {
 		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.schematics.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\Corleone test.asc");
-//		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc");
+//		readFile("F:\\Projekt\\americaN\\Corleone\\cap.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
+//		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
+		
+		writeFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.schematics.new.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.new.asc");
 		
 		fillTree(schematicsTreeRootNode, diptraceProject.getSchematicsRoot());
 		fillTree(pcbTreeRootNode, diptraceProject.getPCBRoot());
@@ -96,6 +102,20 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 				jTextArea_Output.append(line);
 			}
 */			
+		} catch (FileNotFoundException ex) {
+			Logger.getLogger(JFrame_MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+		} catch (IOException ex) {
+			Logger.getLogger(JFrame_MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
+
+	private void writeFile(final String schematicsFilename, final String pcbFilename) {
+		
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(schematicsFilename)); BufferedWriter writer2 = new BufferedWriter(new FileWriter(pcbFilename))) {
+			
+			diptraceProject.writeSchematics(writer);
+			diptraceProject.writePCB(writer2);
+			
 		} catch (FileNotFoundException ex) {
 			Logger.getLogger(JFrame_MainWindow.class.getName()).log(Level.SEVERE, null, ex);
 		} catch (IOException ex) {
