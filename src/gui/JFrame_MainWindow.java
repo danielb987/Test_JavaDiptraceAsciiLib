@@ -20,6 +20,8 @@ import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javadiptraceasciilib.diptrace.DiptraceProject;
+import javadiptraceasciilib.diptrace.exceptions.NotFoundException;
+import javadiptraceasciilib.diptrace.operations.DiptraceOperations;
 import javadiptraceasciilib.diptrace.tokenizer.DiptraceTokenizer;
 import javadiptraceasciilib.diptrace.tree.DiptraceItem;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -53,6 +55,19 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 //		readFile("F:\\Projekt\\americaN\\Corleone\\cap.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 		
+		
+		DiptraceOperations diptraceOperations = new DiptraceOperations(diptraceProject);
+		
+		try {
+			DiptraceItem part = diptraceOperations.getSchematicsComponentPart("aaa");
+			diptraceOperations.duplicateItem(part);
+		} catch (NotFoundException ex) {
+			ex.printStackTrace();
+		}
+        
+		
+		
+		
 		writeFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.schematics.new.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.new.asc");
 		
 		fillTree(schematicsTreeRootNode, diptraceProject.getSchematicsRoot());
@@ -78,51 +93,21 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 	}
 	
 	private void readFile(final String schematicsFilename, final String pcbFilename) {
-		
-		try (BufferedReader br = new BufferedReader(new FileReader(schematicsFilename)); BufferedReader br2 = new BufferedReader(new FileReader(pcbFilename))) {
-			
-			DiptraceTokenizer tokenizer = new DiptraceTokenizer(br);
-			diptraceProject.parseSchematics(tokenizer);
-			
-			tokenizer = new DiptraceTokenizer(br2);
-			diptraceProject.parsePCB(tokenizer);
-/*			
-			DiptraceToken token;
-			while ((token = tokenizer.nextToken()) != null) {
-//				System.out.format("Token: %s: %s\n", token.type.name(), token.getValue());
-				System.err.format("Token: %s: %s\n", token.type.name(), token.getValue());
-			}
-*/			
-/*			
-			String line;
-			
-			int lineNo = 0;
-			while ((line = br.readLine()) != null) {
-				System.out.format("%d: %s\n", ++lineNo, line);
-				jTextArea_Output.append(line);
-			}
-*/			
-		} catch (FileNotFoundException ex) {
-			Logger.getLogger(JFrame_MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+		try {
+			diptraceProject.readSchematicsAndPCB(schematicsFilename, pcbFilename);
 		} catch (IOException ex) {
 			Logger.getLogger(JFrame_MainWindow.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-
+	
 	private void writeFile(final String schematicsFilename, final String pcbFilename) {
-		
-		try (BufferedWriter writer = new BufferedWriter(new FileWriter(schematicsFilename)); BufferedWriter writer2 = new BufferedWriter(new FileWriter(pcbFilename))) {
-			
-			diptraceProject.writeSchematics(writer);
-			diptraceProject.writePCB(writer2);
-			
-		} catch (FileNotFoundException ex) {
-			Logger.getLogger(JFrame_MainWindow.class.getName()).log(Level.SEVERE, null, ex);
+		try {
+			diptraceProject.writeSchematicsAndPCB(schematicsFilename, pcbFilename);
 		} catch (IOException ex) {
 			Logger.getLogger(JFrame_MainWindow.class.getName()).log(Level.SEVERE, null, ex);
 		}
 	}
-
+	
 	/**
 	 * This method is called from within the constructor to initialize the form.
 	 * WARNING: Do NOT modify this code. The content of this method is always

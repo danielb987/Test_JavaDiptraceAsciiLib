@@ -5,6 +5,9 @@
  */
 package gui;
 
+import examples.javadiptraceasciilib.FlashLight;
+import static examples.javadiptraceasciilib.FlashLight.createFlashLight;
+
 /**
  *
  * @author daniel
@@ -15,6 +18,14 @@ public class Main {
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
+		
+		FlashLight.createFlashLight(
+            "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
+            "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
+            "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb.asc",
+            "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb_new.asc");
+		
+		System.exit(0);
 /*		
 		try {
 			new JFrame_MainWindow().init();
