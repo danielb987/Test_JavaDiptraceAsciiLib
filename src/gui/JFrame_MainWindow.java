@@ -19,11 +19,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javadiptraceasciilib.diptrace.DiptraceProject;
-import javadiptraceasciilib.diptrace.exceptions.NotFoundException;
-import javadiptraceasciilib.diptrace.operations.DiptraceOperations;
-import javadiptraceasciilib.diptrace.tokenizer.DiptraceTokenizer;
-import javadiptraceasciilib.diptrace.tree.DiptraceItem;
+import javadiptraceasciilib.DiptraceProject;
+import javadiptraceasciilib.DiptraceGraphics;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -55,8 +52,10 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 //		readFile("F:\\Projekt\\americaN\\Corleone\\cap.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 		
-		readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
-			"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb_new.asc");
+		readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
+			"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb.asc");
+//		readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
+//			"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb_new.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\Three LED.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.asc");
 /*		
 		DiptraceOperations diptraceOperations = new DiptraceOperations(diptraceProject);
@@ -73,8 +72,8 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 		
 		writeFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.schematics.new.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.new.asc");
 */		
-		fillTree(schematicsTreeRootNode, diptraceProject.getSchematicsRoot());
-		fillTree(pcbTreeRootNode, diptraceProject.getPCBRoot());
+//DANIEL		fillTree(schematicsTreeRootNode, diptraceProject.getSchematicsRoot());
+//DANIEL		fillTree(pcbTreeRootNode, diptraceProject.getPCBRoot());
 //		jTree_DiptraceItems.collapsePath(path);
 		jTree_DiptraceSchematicsItems.expandRow(0);
 		jTree_DiptraceSchematicsItems.setRootVisible(false);
@@ -85,7 +84,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 		
 		return this;
 	}
-	
+/*	
 	private void fillTree(DefaultMutableTreeNode treeNode, DiptraceItem item) {
 		for (DiptraceItem subItem : item.getSubItems()) {
 //			DefaultMutableTreeNode node = new DefaultMutableTreeNode(subItem.fIdentifier);
@@ -94,7 +93,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 			fillTree(node, subItem);
 		}
 	}
-	
+*/	
 	private void readFile(final String schematicsFilename, final String pcbFilename) {
 		try {
 			diptraceProject.readSchematicsAndPCB(schematicsFilename, pcbFilename);
@@ -122,22 +121,28 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree_DiptraceSchematicsItems = new javax.swing.JTree();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea_Output = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTree_DiptracePCBItems = new javax.swing.JTree();
+        jPanelGraphics = new JPanel_DiptraceGraphicsPanel(new DiptraceGraphics(diptraceProject));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jTree_DiptraceSchematicsItems.setModel(diptraceSchematicsItemsTreeModel);
         jScrollPane1.setViewportView(jTree_DiptraceSchematicsItems);
 
-        jTextArea_Output.setColumns(20);
-        jTextArea_Output.setRows(5);
-        jScrollPane2.setViewportView(jTextArea_Output);
-
         jTree_DiptracePCBItems.setModel(diptracePCBItemsTreeModel);
         jScrollPane3.setViewportView(jTree_DiptracePCBItems);
+
+        javax.swing.GroupLayout jPanelGraphicsLayout = new javax.swing.GroupLayout(jPanelGraphics);
+        jPanelGraphics.setLayout(jPanelGraphicsLayout);
+        jPanelGraphicsLayout.setHorizontalGroup(
+            jPanelGraphicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 635, Short.MAX_VALUE)
+        );
+        jPanelGraphicsLayout.setVerticalGroup(
+            jPanelGraphicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,14 +152,14 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanelGraphics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+            .addComponent(jPanelGraphics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -162,10 +167,9 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanelGraphics;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTextArea jTextArea_Output;
     private javax.swing.JTree jTree_DiptracePCBItems;
     private javax.swing.JTree jTree_DiptraceSchematicsItems;
     // End of variables declaration//GEN-END:variables
