@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javadiptraceasciilib.DiptraceProject;
 import javadiptraceasciilib.DiptraceGraphics;
+import javadiptraceasciilib.DiptraceItem;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeModel;
@@ -72,9 +73,10 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 		
 		writeFile("F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.schematics.new.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.new.asc");
 */		
-//DANIEL		fillTree(schematicsTreeRootNode, diptraceProject.getSchematicsRoot());
-//DANIEL		fillTree(pcbTreeRootNode, diptraceProject.getPCBRoot());
+		fillTree(schematicsTreeRootNode, diptraceProject.getSchematicsRoot());
+		fillTree(pcbTreeRootNode, diptraceProject.getPCBRoot());
 //		jTree_DiptraceItems.collapsePath(path);
+		
 		jTree_DiptraceSchematicsItems.expandRow(0);
 		jTree_DiptraceSchematicsItems.setRootVisible(false);
 		jTree_DiptracePCBItems.expandRow(0);
@@ -84,7 +86,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 		
 		return this;
 	}
-/*	
+	
 	private void fillTree(DefaultMutableTreeNode treeNode, DiptraceItem item) {
 		for (DiptraceItem subItem : item.getSubItems()) {
 //			DefaultMutableTreeNode node = new DefaultMutableTreeNode(subItem.fIdentifier);
@@ -93,7 +95,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 			fillTree(node, subItem);
 		}
 	}
-*/	
+	
 	private void readFile(final String schematicsFilename, final String pcbFilename) {
 		try {
 			diptraceProject.readSchematicsAndPCB(schematicsFilename, pcbFilename);
@@ -164,8 +166,8 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-
+	
+	
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanelGraphics;
     private javax.swing.JScrollPane jScrollPane1;
@@ -173,4 +175,6 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
     private javax.swing.JTree jTree_DiptracePCBItems;
     private javax.swing.JTree jTree_DiptraceSchematicsItems;
     // End of variables declaration//GEN-END:variables
+	
+	
 }
