@@ -10,13 +10,7 @@ import diptrace.tokenizer.DiptraceToken;
 import diptrace.tokenizer.DiptraceTokenizer;
 import diptrace.tree.DiptraceItem;
 */
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javadiptraceasciilib.DiptraceProject;
@@ -24,8 +18,6 @@ import javadiptraceasciilib.DiptraceGraphics;
 import javadiptraceasciilib.DiptraceItem;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeModel;
-import javax.swing.tree.TreePath;
 
 /**
  *
