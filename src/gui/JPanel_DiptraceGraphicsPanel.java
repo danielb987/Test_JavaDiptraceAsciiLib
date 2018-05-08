@@ -59,13 +59,16 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 	Image offscreenImage;
 	Rectangle bounds;
 	
-	double railroadWidth = 5000;	// Hela banan
-	double railroadHeight = 3900;	// Hela banan
-//	double railroadHeight = 4000;	// Hela banan
-	double scaleFactor = 0.18;		// Hela banan
+//	double railroadWidth = 5000;	// Hela banan
+	//double railroadHeight = 3900;	// Hela banan
+//	double scaleFactor = 0.18;		// Hela banan
+	double scaleFactor = 165;		// Hela banan
+//	double scaleFactor = 10000;		// Hela banan
 	
-	double railroadCenterX = railroadWidth / 2;
-	double railroadCenterY = railroadHeight / 2;
+//	double railroadCenterX = railroadWidth / 2;
+//	double railroadCenterY = railroadHeight / 2;
+	double railroadCenterX = 0;
+	double railroadCenterY = 0;
 	double angle = Math.toRadians(45);
 	
 	boolean leftMouseButtonDown = false;
@@ -212,14 +215,14 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 		bounds = new Rectangle(Math.round(420), Math.round(297));
 //		bounds = new Rectangle(Math.round(420*MM_TO_UNITS), Math.round(297*MM_TO_UNITS));
 		
-//		draw(graphics, false, null, 0, 0, 0, 0);
+//		drawPCB(graphics, false, null, 0, 0, 0, 0);
 		
 //			graphics.drawLine(0, 0, 297, 297);
 //			graphics.drawLine(297, 297, 420, 0);
 //			graphics.scale(1.3, 1.3);
 //			graphics.scale(MM_TO_UNITS, MM_TO_UNITS);
-//			draw(graphics, false, null, 0, 0, 0, 0);
-//			draw(new PDF_Graphics(contentStream), false, null, 0, 0, 0, 0);
+//			drawPCB(graphics, false, null, 0, 0, 0, 0);
+//			drawPCB(new PDF_Graphics(contentStream), false, null, 0, 0, 0, 0);
 		
 		bounds = oldBounds;
 	}
@@ -327,6 +330,7 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 		}
 		else
 		{
+/*
 			// Slå på denna vid hela spårplanen
 	//		graphics.setStroke(new BasicStroke(15));
 	////		graphics.drawRect(0, 0, (int) Math.round(railroadWidth), (int) Math.round(railroadHeight));
@@ -336,7 +340,7 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 			graphics.drawLine(0, 3900+1900+160, 1700, 3900+1900+160);
 			graphics.drawLine(1700, 3900+1900+160, 1700, 3900);
 			graphics.drawLine(1700, 3900, 5000, 3900);
-
+*/
 			// Rita vägg i rummet
 	//		graphics.drawRect(1800, 1800, (int) Math.round(railroadWidth)-1800, 50);
 //			graphics.drawLine(1800, 1700, (int) Math.round(railroadWidth), 1800);
@@ -355,7 +359,7 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 		
 		graphics.setColor(Color.black);
 		
-		fDiptraceGraphics.draw(graphics);
+		fDiptraceGraphics.drawPCB(graphics);
 		
 		
 		if (1 == 0)
@@ -381,11 +385,11 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 ////		graphics.setColor(Color.black);
 		
 		// Draw railroad
-//		railroad.draw(graphics, DrawStyle.TRACK_CENTRE);
-////		railroad.draw(graphics, DrawStyle.RAILS);
+//		railroad.drawPCB(graphics, DrawStyle.TRACK_CENTRE);
+////		railroad.drawPCB(graphics, DrawStyle.RAILS);
 		
-//		railroad.draw(graphics, DrawStyle.RAILS);
-//		railroad.draw(graphics, DrawStyle.RAIL_FOOT);
+//		railroad.drawPCB(graphics, DrawStyle.RAILS);
+//		railroad.drawPCB(graphics, DrawStyle.RAIL_FOOT);
 		
 /*		
 		double x = (lastX - bounds.width/2.0) / scaleFactor + railroadCenterX;
@@ -397,10 +401,9 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 		System.out.format("b.x: %d, b.y: %d\n", bounds.width/2, bounds.height/2);
 		System.out.format("XX: %1.0f, YY: %1.0f\n", x, y);
 		System.out.format("\n");
-		graphics.draw(new Line2D.Double(x-len, y, x+len, y));
-		graphics.draw(new Line2D.Double(x, y-len, x, y+len));
+		graphics.drawPCB(new Line2D.Double(x-len, y, x+len, y));
+		graphics.drawPCB(new Line2D.Double(x, y-len, x, y+len));
 */		
-		
 		graphics.setTransform(oldXForm); // Restore transform
 	}
 	
@@ -435,7 +438,12 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 		
 		Font font = new Font("Verdana", Font.PLAIN, 10);
 		bufferGraphics.setFont(font);
-		String str = String.format("%1.2f", scaleFactor);
+//		String str = String.format("%1.2f", scaleFactor);
+		String str = String.format(
+			"%1.0f, %1.0f - %1.0f",
+			railroadCenterX,
+			railroadCenterY,
+			scaleFactor);
 		bufferGraphics.drawString(str, 2, 10);
 		
 		g.drawImage(offscreenImage, 0, 0, this);

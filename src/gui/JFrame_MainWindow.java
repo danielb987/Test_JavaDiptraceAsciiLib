@@ -45,8 +45,13 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 //		readFile("F:\\Projekt\\americaN\\Corleone\\cap.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 		
-		readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
-			"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb.asc");
+		if (1==0)
+			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
+				"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb.asc");
+		else
+			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
+				"F:\\Projekt\\americaN\\Corleone\\Layers.asc");
+		
 //		readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
 //			"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb_new.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\Three LED.asc", "F:\\Projekt\\americaN\\Corleone\\Corleone ställverk bas 1.2.pcb.asc");

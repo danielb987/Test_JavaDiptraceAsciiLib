@@ -17,13 +17,8 @@ public class Main {
 	 * @param args the command line arguments
 	 */
 	public static void main(String args[]) {
-/*		
-		FlashLight.createFlashLight(
-            "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
-            "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
-            "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb.asc",
-            "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb_new.asc");
-*/		
+		
+		if (1==0)
 		FlashLight.createFlashLight(
             "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
             "F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
