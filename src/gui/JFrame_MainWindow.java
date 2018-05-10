@@ -15,7 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javadiptraceasciilib.DiptraceProject;
 import javadiptraceasciilib.DiptraceGraphics;
-import javadiptraceasciilib.DiptraceItem;
+import javadiptraceasciilib.DiptraceTreeNode;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -84,8 +84,8 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 		return this;
 	}
 	
-	private void fillTree(DefaultMutableTreeNode treeNode, DiptraceItem item) {
-		for (DiptraceItem subItem : item.getSubItems()) {
+	private void fillTree(DefaultMutableTreeNode treeNode, DiptraceTreeNode item) {
+		for (DiptraceTreeNode subItem : item.getChildren()) {
 //			DefaultMutableTreeNode node = new DefaultMutableTreeNode(subItem.fIdentifier);
 			DefaultMutableTreeNode node = new DefaultMutableTreeNode(subItem.toString());
 			treeNode.add(node);

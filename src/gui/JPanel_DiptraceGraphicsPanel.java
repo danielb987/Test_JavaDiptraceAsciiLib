@@ -62,7 +62,8 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 //	double railroadWidth = 5000;	// Hela banan
 	//double railroadHeight = 3900;	// Hela banan
 //	double scaleFactor = 0.18;		// Hela banan
-	double scaleFactor = 165;		// Hela banan
+//////	double scaleFactor = 165;		// Hela banan
+	double scaleFactor = 1;		// Hela banan
 //	double scaleFactor = 10000;		// Hela banan
 	
 //	double railroadCenterX = railroadWidth / 2;
