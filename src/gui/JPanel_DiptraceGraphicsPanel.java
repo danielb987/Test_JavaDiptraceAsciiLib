@@ -13,6 +13,8 @@ import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -25,6 +27,8 @@ import java.awt.print.Printable;
 import java.awt.print.PrinterException;
 import java.awt.print.PrinterJob;
 import javadiptraceasciilib.DiptraceGraphics;
+import javadiptraceasciilib.DiptraceGraphics.Side;
+import javadiptraceasciilib.DiptraceGraphics.SideTransparency;
 import javax.print.PrintService;
 import javax.print.PrintServiceLookup;
 import javax.print.attribute.HashPrintRequestAttributeSet;
@@ -39,7 +43,7 @@ import javax.swing.JPanel;
  *
  * @author Daniel Bergqvist
  */
-public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseListener, MouseMotionListener, MouseWheelListener, Printable
+public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener, Printable
 {
 	
 	private final DiptraceGraphics fDiptraceGraphics;
@@ -49,6 +53,8 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 	
 //	private final static boolean DRAW_ID = false;
 	private final static boolean DRAW_ID = true;
+	
+	Side side = Side.TOP;
 	
 	double printStartPositionX;
 	double printStartPositionY;
@@ -91,9 +97,12 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 	
 	private void init()
 	{
+		addKeyListener(this);
 		addMouseListener(this);
 		addMouseMotionListener(this);
 		addMouseWheelListener(this);
+		setFocusable(true);
+		requestFocusInWindow();
 	}
 	
 	
@@ -360,8 +369,9 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 		
 		graphics.setColor(Color.black);
 		
-		fDiptraceGraphics.drawPCB(graphics);
+		fDiptraceGraphics.drawPCB(graphics, side, SideTransparency.PART);
 		
+		graphics.setColor(Color.WHITE);
 		
 		if (1 == 0)
 		{
@@ -432,7 +442,9 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 //		bufferGraphics.drawRect(0, 0, bounds.width-1, bounds.height-1);
 		
 		// Vit bakgrundsfärg
-		bufferGraphics.setColor(Color.white);
+//		bufferGraphics.setColor(Color.white);
+		// Svart bakgrundsfärg
+		bufferGraphics.setColor(Color.BLACK);
 		bufferGraphics.fillRect(0, 0, bounds.width, bounds.height);
 		
 		draw(bufferGraphics, false, null, 0, 0, 0, 0);
@@ -470,6 +482,8 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 			lastY = e.getY();
 			this.repaint();
 		}
+		
+		requestFocusInWindow();
 	}
 	
 	
@@ -557,6 +571,32 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements MouseL
 			
 			this.repaint();
 		}
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		System.out.format("KeyTyped: %c%n", e.getKeyChar());
+		
+		if (e.getKeyChar() == '1') {
+			side = Side.TOP;
+			this.repaint();
+		}
+		if (e.getKeyChar() == '2') {
+			side = Side.BOTTOM;
+			this.repaint();
+		}
+//		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+//		System.out.format("KeyTyped: %c%n", e.getKeyChar());
+//		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+//		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 	}
 	
 	
