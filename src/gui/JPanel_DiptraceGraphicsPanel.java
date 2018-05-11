@@ -54,7 +54,8 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyLis
 //	private final static boolean DRAW_ID = false;
 	private final static boolean DRAW_ID = true;
 	
-	Side side = Side.TOP;
+//	Side side = Side.TOP;
+	int layerToDraw = 0;
 	
 	double printStartPositionX;
 	double printStartPositionY;
@@ -369,7 +370,8 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyLis
 		
 		graphics.setColor(Color.black);
 		
-		fDiptraceGraphics.drawPCB(graphics, side, SideTransparency.PART);
+//		fDiptraceGraphics.drawPCB(graphics, side, SideTransparency.PART);
+		fDiptraceGraphics.drawPCB(graphics, layerToDraw, SideTransparency.PART);
 		
 		graphics.setColor(Color.WHITE);
 		
@@ -578,11 +580,13 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyLis
 		System.out.format("KeyTyped: %c%n", e.getKeyChar());
 		
 		if (e.getKeyChar() == '1') {
-			side = Side.TOP;
+			layerToDraw = 0;
+//			side = Side.TOP;
 			this.repaint();
 		}
 		if (e.getKeyChar() == '2') {
-			side = Side.BOTTOM;
+			layerToDraw = 1;
+//			side = Side.BOTTOM;
 			this.repaint();
 		}
 //		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
