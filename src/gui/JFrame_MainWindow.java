@@ -1,5 +1,5 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
+ * To change this license header, choose License Headers in DiptraceProject Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -15,9 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javadiptraceasciilib.DiptraceProject;
 import javadiptraceasciilib.DiptraceGraphics;
-import javadiptraceasciilib.DiptraceTreeNode;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
+import javadiptraceasciilib.DiptraceTreeNode;
 
 /**
  *
@@ -47,10 +47,15 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 		
 		if (1==0)
 			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
-				"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb.asc");
+//				"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb.asc");
+				"F:\\Projekt\\americaN\\Corleone\\a.asc");
 		else
+//			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
+//				"F:\\Projekt\\americaN\\Corleone\\Layers.asc");
+//			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
+//				"F:\\Projekt\\americaN\\Corleone\\Layer_Colors.asc");
 			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
-				"F:\\Projekt\\americaN\\Corleone\\Layers.asc");
+				"F:\\Projekt\\americaN\\Corleone\\Layer_Colors_2.asc");
 		
 //		readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
 //			"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb_new.asc");
