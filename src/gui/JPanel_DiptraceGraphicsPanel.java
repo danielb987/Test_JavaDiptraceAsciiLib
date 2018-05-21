@@ -42,18 +42,21 @@ import javax.swing.JPanel;
  *
  * @author Daniel Bergqvist
  */
-public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener, Printable
+public final class JPanel_DiptraceGraphicsPanel
+	extends JPanel
+	implements KeyListener, MouseListener, MouseMotionListener, MouseWheelListener, Printable
 {
+	
+	public enum WhatToDraw {
+		SCHEMATICS,
+		PCB,
+	}
+	
+	
+	private final WhatToDraw whatToDraw;
 	
 	private final DiptraceGraphics fDiptraceGraphics;
 	
-	private final static boolean ONLY_SINGLE_SWITCH = false;
-//	private final static boolean ONLY_SINGLE_SWITCH = true;
-	
-//	private final static boolean DRAW_ID = false;
-	private final static boolean DRAW_ID = true;
-	
-//	Side side = Side.TOP;
 	int layerToDraw = 0;
 	
 	double printStartPositionX;
@@ -65,17 +68,10 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyLis
 	Image offscreenImage;
 	Rectangle bounds;
 	
-//	double railroadWidth = 5000;	// Hela banan
-	//double railroadHeight = 3900;	// Hela banan
-//	double scaleFactor = 0.18;		// Hela banan
-//////	double scaleFactor = 165;		// Hela banan
 	double scaleFactor = 1;		// Hela banan
-//	double scaleFactor = 10000;		// Hela banan
 	
-//	double railroadCenterX = railroadWidth / 2;
-//	double railroadCenterY = railroadHeight / 2;
-	double railroadCenterX = 0;
-	double railroadCenterY = 0;
+	double centerX = 0;
+	double centerY = 0;
 	double angle = Math.toRadians(45);
 	
 	boolean leftMouseButtonDown = false;
@@ -87,10 +83,11 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyLis
 	int printNumPages = 30;
 	
 	
-	public JPanel_DiptraceGraphicsPanel(DiptraceGraphics diptraceGraphics)
+	public JPanel_DiptraceGraphicsPanel(DiptraceGraphics diptraceGraphics, WhatToDraw whatToDraw)
 	{
 		super();
 		this.fDiptraceGraphics = diptraceGraphics;
+		this.whatToDraw = whatToDraw;
 		init();
 	}
 	
@@ -238,12 +235,6 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyLis
 	}
 	
 	
-	private double getLength(double X1, double Y1, double X2, double Y2)
-	{
-		return Math.sqrt((X1-X2)*(X1-X2) + (Y1-Y2)*(Y1-Y2));
-	}
-	
-	
 	private void draw(Graphics2D graphics, boolean print, PageFormat pageFormat, double x0, double y0, int pageX, int pageY)
 	{
 		AffineTransform oldXForm = graphics.getTransform();
@@ -297,125 +288,39 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyLis
 			graphics.drawString(String.format("x: %d, y: %d", pageX, pageY), (float)x+10, (float)y+10);
 */			
 //			graphics.translate(-(x0 + 250*(1.0/2+pageX)), -(y0+200*(1.0/2+pageY)));
-//			graphics.translate(-railroadCenterX, -railroadCenterY);
+//			graphics.translate(-centerX, -centerY);
 		}
 		else
 		{
 			// Transformera till fönstret
 			graphics.translate(bounds.width/2, bounds.height/2);
 			
-//			double scale = 0.09;
-////			double scale = 0.18;	// Hela banan
-			
-//			if (ONLY_SINGLE_SWITCH)
-//				scale = 3.0;		// En växel
-			
-//			scale = 1.0;		// Test
-			
 			graphics.scale(scaleFactor, scaleFactor);
-//			graphics.scale(scale, scale);
 			
 			// Rotera
 //			bufferGraphics.rotate(angle);
 			
 			// Transformera så att ritningens centrum hamnar i origo
-			graphics.translate(-railroadCenterX, -railroadCenterY);
+			graphics.translate(-centerX, -centerY);
 		}
-		
-		// Test
-		graphics.setColor(Color.blue);
-		
-//		graphics.drawLine(0, 0, 250, 200);
-//		graphics.drawLine(250, 0, 0, 200);
-		
-//		graphics.drawLine(250, 0, 500, 200);
-//		graphics.drawLine(500, 0, 250, 200);
-		
-		
-		if (ONLY_SINGLE_SWITCH)
-		{
-			// Rita rektanglar runt växeln
-//			graphics.drawRect(0, 0, 250, 200);		// Draw a rectangle that is 250 x 200 mm big
-//			graphics.drawRect(250, 0, 250, 200);	// Draw a rectangle that is 250 x 200 mm big
-		}
-		else
-		{
-/*
-			// Slå på denna vid hela spårplanen
-	//		graphics.setStroke(new BasicStroke(15));
-	////		graphics.drawRect(0, 0, (int) Math.round(railroadWidth), (int) Math.round(railroadHeight));
-			graphics.drawRect(0, (int) Math.round(railroadHeight), 740-50, 160);
-	//		graphics.drawRect(0, (int) Math.round(railroadHeight), 1700, 1900+160);
-			graphics.drawLine(0, 3900, 0, 3900+1900+160);
-			graphics.drawLine(0, 3900+1900+160, 1700, 3900+1900+160);
-			graphics.drawLine(1700, 3900+1900+160, 1700, 3900);
-			graphics.drawLine(1700, 3900, 5000, 3900);
-*/
-			// Rita vägg i rummet
-	//		graphics.drawRect(1800, 1800, (int) Math.round(railroadWidth)-1800, 50);
-//			graphics.drawLine(1800, 1700, (int) Math.round(railroadWidth), 1800);
-//			graphics.drawLine(1800, 1700+50, (int) Math.round(railroadWidth), 1800+50);
-//			graphics.drawLine(1800, 1700, 1800, 1700+50);
-//			graphics.drawRect(1700-30, (int) Math.round(railroadHeight), 30, 160);
-		}
-		// Rita "dörröppning"
-//		graphics.setColor(Color.red);
-//		graphics.drawRect(740-50, (int) Math.round(railroadHeight), 1010, 160);
-		
-		
-//		graphics.drawRect(0, 0, (int) Math.round(railroadWidth), 1750);
-//		graphics.drawLine(2000, 1750, (int) Math.round(railroadWidth), 1750);
-		
 		
 		graphics.setColor(Color.black);
 		
-//		fDiptraceGraphics.drawPCB(graphics, side, SideTransparency.PART);
-		fDiptraceGraphics.drawPCB(graphics, layerToDraw, SideTransparency.PART);
+		switch (whatToDraw) {
+			case SCHEMATICS:
+				fDiptraceGraphics.drawSchematics(graphics);
+				break;
+				
+			case PCB:
+				fDiptraceGraphics.drawPCB(graphics, layerToDraw, SideTransparency.PART);
+				break;
+				
+			default:
+				throw new RuntimeException(String.format("whatToDraw has unknown value: %s", whatToDraw.name()));
+		}
 		
 		graphics.setColor(Color.WHITE);
 		
-		if (1 == 0)
-		{
-			// Stationshus och godsmagasin
-			// Slå på denna vid hela spårplanen
-	//		graphics.setStroke(new BasicStroke());
-			graphics.setColor(Color.blue);
-			graphics.fillRect(1000, 20, 200, 280);
-			graphics.setColor(Color.black);
-			graphics.drawRect(1000, 20, 200, 280);
-
-			graphics.setColor(new Color(230,0,0));
-			graphics.fillRect(1600, 60, 200, 150);
-			graphics.setColor(Color.black);
-			graphics.drawRect(1600, 60, 200, 150);
-		}
-		
-		
-		
-		
-//		graphics.drawRect(0, 0, (int) Math.round(railroadWidth), (int) Math.round(railroadHeight));
-////		graphics.setColor(Color.black);
-		
-		// Draw railroad
-//		railroad.drawPCB(graphics, DrawStyle.TRACK_CENTRE);
-////		railroad.drawPCB(graphics, DrawStyle.RAILS);
-		
-//		railroad.drawPCB(graphics, DrawStyle.RAILS);
-//		railroad.drawPCB(graphics, DrawStyle.RAIL_FOOT);
-		
-/*		
-		double x = (lastX - bounds.width/2.0) / scaleFactor + railroadCenterX;
-		double y = (lastY - bounds.height/2.0) / scaleFactor + railroadCenterY;
-		double len = 10;
-		System.out.format("\n");
-		System.out.format("X: %d, Y: %d\n", lastX, lastY);
-		System.out.format("railroadCenterX: %1.0f, railroadCenterY: %1.0f\n", railroadCenterX, railroadCenterY);
-		System.out.format("b.x: %d, b.y: %d\n", bounds.width/2, bounds.height/2);
-		System.out.format("XX: %1.0f, YY: %1.0f\n", x, y);
-		System.out.format("\n");
-		graphics.drawPCB(new Line2D.Double(x-len, y, x+len, y));
-		graphics.drawPCB(new Line2D.Double(x, y-len, x, y+len));
-*/		
 		graphics.setTransform(oldXForm); // Restore transform
 	}
 	
@@ -453,10 +358,9 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyLis
 		Font font = new Font("Verdana", Font.PLAIN, 10);
 		bufferGraphics.setFont(font);
 //		String str = String.format("%1.2f", scaleFactor);
-		String str = String.format(
-			"%1.0f, %1.0f - %1.0f",
-			railroadCenterX,
-			railroadCenterY,
+		String str = String.format("%1.0f, %1.0f - %1.0f",
+			centerX,
+			centerY,
 			scaleFactor);
 		bufferGraphics.drawString(str, 2, 10);
 		
@@ -525,13 +429,13 @@ public final class JPanel_DiptraceGraphicsPanel extends JPanel implements KeyLis
 	{
 		if (leftMouseButtonDown)
 		{
-			double tempLastX = (lastX - bounds.width/2.0) / scaleFactor + railroadCenterX;
-			double tempLastY = (lastY - bounds.height/2.0) / scaleFactor + railroadCenterY;
-			double x = (e.getX() - bounds.width/2.0) / scaleFactor + railroadCenterX;
-			double y = (e.getY() - bounds.height/2.0) / scaleFactor + railroadCenterY;
+			double tempLastX = (lastX - bounds.width/2.0) / scaleFactor + centerX;
+			double tempLastY = (lastY - bounds.height/2.0) / scaleFactor + centerY;
+			double x = (e.getX() - bounds.width/2.0) / scaleFactor + centerX;
+			double y = (e.getY() - bounds.height/2.0) / scaleFactor + centerY;
 			
-			railroadCenterX += tempLastX - x;
-			railroadCenterY += tempLastY - y;
+			centerX += tempLastX - x;
+			centerY += tempLastY - y;
 			
 			lastX = e.getX();
 			lastY = e.getY();

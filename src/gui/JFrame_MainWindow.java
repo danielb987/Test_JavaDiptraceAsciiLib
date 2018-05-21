@@ -10,6 +10,7 @@ import diptrace.tokenizer.DiptraceToken;
 import diptrace.tokenizer.DiptraceTokenizer;
 import diptrace.tree.DiptraceItem;
 */
+import gui.JPanel_DiptraceGraphicsPanel.WhatToDraw;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -127,7 +128,9 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
         jTree_DiptraceSchematicsItems = new javax.swing.JTree();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTree_DiptracePCBItems = new javax.swing.JTree();
-        jPanelGraphics = new JPanel_DiptraceGraphicsPanel(new DiptraceGraphics(diptraceProject));
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new JPanel_DiptraceGraphicsPanel(new DiptraceGraphics(diptraceProject), WhatToDraw.SCHEMATICS);
+        jPanelGraphics = new JPanel_DiptraceGraphicsPanel(new DiptraceGraphics(diptraceProject), WhatToDraw.PCB);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -137,16 +140,31 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
         jTree_DiptracePCBItems.setModel(diptracePCBItemsTreeModel);
         jScrollPane3.setViewportView(jTree_DiptracePCBItems);
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 630, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 479, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Schematics", jPanel1);
+
         javax.swing.GroupLayout jPanelGraphicsLayout = new javax.swing.GroupLayout(jPanelGraphics);
         jPanelGraphics.setLayout(jPanelGraphicsLayout);
         jPanelGraphicsLayout.setHorizontalGroup(
             jPanelGraphicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 635, Short.MAX_VALUE)
+            .addGap(0, 630, Short.MAX_VALUE)
         );
         jPanelGraphicsLayout.setVerticalGroup(
             jPanelGraphicsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 479, Short.MAX_VALUE)
         );
+
+        jTabbedPane1.addTab("PCB", jPanelGraphics);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -157,13 +175,13 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 343, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanelGraphics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jTabbedPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
-            .addComponent(jPanelGraphics, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane3)
+            .addComponent(jTabbedPane1)
         );
 
         pack();
@@ -171,9 +189,11 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 	
 	
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanelGraphics;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTree jTree_DiptracePCBItems;
     private javax.swing.JTree jTree_DiptraceSchematicsItems;
     // End of variables declaration//GEN-END:variables
