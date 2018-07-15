@@ -55,7 +55,9 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 //				"F:\\Projekt\\americaN\\Corleone\\Layers.asc");
 //			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
 //				"F:\\Projekt\\americaN\\Corleone\\Layer_Colors.asc");
-			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
+////			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
+////				"F:\\Projekt\\americaN\\Corleone\\Layer_Colors_2.asc");
+			readFile("F:\\Projekt\\americaN\\Corleone\\TestAAA.asc",
 				"F:\\Projekt\\americaN\\Corleone\\Layer_Colors_2.asc");
 		
 //		readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
