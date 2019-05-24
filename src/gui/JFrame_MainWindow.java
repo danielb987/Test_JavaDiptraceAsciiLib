@@ -46,11 +46,14 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 //		readFile("F:\\Projekt\\americaN\\Corleone\\cap.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 //		readFile("F:\\Projekt\\americaN\\Corleone\\empty.asc", "F:\\Projekt\\americaN\\Corleone\\empty_pcb.asc");
 		
-		if (1==0)
+		if (1==1)
+			readFile("F:\\Projekt\\Java\\GitHub\\CorleoneStallvark\\CorleoneSwitchboard_Schematics.asc",
+				"F:\\Projekt\\Java\\GitHub\\CorleoneStallvark\\CorleoneSwitchboard_PCB.asc");
+		else if (1==0)
 			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
 //				"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb.asc");
 				"F:\\Projekt\\americaN\\Corleone\\a.asc");
-		else
+		else {
 //			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
 //				"F:\\Projekt\\americaN\\Corleone\\Layers.asc");
 //			readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics.asc",
@@ -59,6 +62,7 @@ public class JFrame_MainWindow extends javax.swing.JFrame {
 ////				"F:\\Projekt\\americaN\\Corleone\\Layer_Colors_2.asc");
 			readFile("F:\\Projekt\\americaN\\Corleone\\TestAAA.asc",
 				"F:\\Projekt\\americaN\\Corleone\\Layer_Colors_2.asc");
+		}
 		
 //		readFile("F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_schematics_new.asc",
 //			"F:\\Projekt\\Java\\GitHub\\JavaDiptraceAsciiLib\\src\\examples\\javadiptraceasciilib\\flashlight_pcb_new.asc");
